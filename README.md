@@ -50,7 +50,8 @@ In MPC Algrithm, we approximate a continuous reference trajectory by fitting a p
 ### Dealing with latency
 In the solution,when sending the control command to the vehicle,we will sleep for 100 milliseconds,this can simulate the latency in a real car.
 This means that our command will effect the car 100 milliseconds later than the current state. If the velocity of the vehicle is low,it will not have a big influnce.But if the velocity is high,it should be paid more attention on.In my code,I calculate the derivation in front 3m,this value will be the factor to calculate a value reduce the reference velocity.In my code,it is as follows:  
-> fg[0] += CppAD::pow(vars[v_start + t] - ref_v/(1.0+10*CppAD::abs(coeffs[1]+6*coeffs[2]+27*coeffs[3])), 2);  
+> fg[0] += CppAD::pow(vars[v_start + t] - ref_v/(1.0+10*CppAD::abs(coeffs[1]+6*coeffs[2]+27*coeffs[3])), 2);   
+
 'coeffs[1]+6*coeffs[2]+27*coeffs[3]' is the value of the derivation in front 3m. '10'is a amplified factor.and 1.0 is used to avoid that ref_v divided by zero.  
 After running in the simulator,it shows that The highest speed of the vehicle can reach 92 kph.and of course the vehicle can run in the track safely.  
 
