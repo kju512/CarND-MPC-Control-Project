@@ -103,6 +103,7 @@ int main() {
           double py = j[1]["y"];
           double psi = j[1]["psi"];
           double v = j[1]["speed"];
+          double delta= j[1]["steering_angle"];
 
           v=v*1.609344/3.6;//transfer to m/s
           /*
@@ -113,13 +114,12 @@ int main() {
           */
           double steer_value;
           double throttle_value;
-            
 
           Eigen::VectorXd state(6);
           //predict 100ms later state
-          px= px+v*cos(psi)*0.1;
-          py= py+v*sin(psi)*0.1;
-          psi= psi;
+          px = px+v*cos(psi)*0.1;
+          py = py+v*sin(psi)*0.1;
+          psi = psi+(2.67/v)*delta*0.1;
 
           Eigen::VectorXd xr(ptsx.size());
           Eigen::VectorXd yr(ptsy.size());
