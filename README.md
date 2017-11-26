@@ -16,14 +16,15 @@ This is a Self-Driving Car Engineer Nanodegree Program completed by Michael chen
 ### Model discription
 The aim of the MPC control is to minimize the two state values: cte(cross track error) and eψ(error of the head direction).
 The MPC model will build a model which transfer the problem to minimize a cost value.
-The cost value have three basic parts and four additional parts(cost constraints):  
+The cost value have three basic parts and five additional parts(cost constraints):  
 * cte(cross track error)
 * eψ(error of the head direction)
 * velocity error(the error between current velocity and the reference velocity)
 * control input(actuation of sterring):δ
 * control input(actuation of accelerating/deccelerating):a
 * error between δ of current step and δ of next step
-* error between a of current step and a of next step  
+* error between a of current step and a of next step
+* error between cte of current step and cte of next step  
 
 when optimize the cost values,we need set the lower and upper limits for the variables.
 all varialbels are shown as below:
